@@ -1,0 +1,190 @@
+/* CSS Variables for Colors */
+:root {
+    --dark: rgba(7, 7, 7, 0.8); /* Deep dark background color with transparency */
+    --cream: #f0f3bd; /* Soft cream color for text */
+    --star-color: #f3ebff; /* White color for stars */
+    --button-color: #A6473A; /* Button color */
+    --error-color: #ff6b6b; /* Error message color */
+}
+
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url('/static/pexels-felixmittermeier-957010.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: var(--cream);
+    padding: 20px;
+    line-height: 1.6;
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* Dark Overlay with Transparency */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--dark); /* Semi-transparent dark overlay */
+    z-index: 0; /* Ensure it’s behind other elements */
+}
+
+/* Starry Background with Controlled Transparency */
+body::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, var(--star-color) 1%, transparent 1%) repeat;
+    background-size: 2px 2px;
+    z-index: -1; /* Ensure it’s behind the dark overlay */
+    pointer-events: none;
+}
+
+/* Navigation Bar */
+nav {
+    background-color: var(--dark);
+    color: var(--cream);
+    padding: 15px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    border: 1px solid var(--cream);
+    position: relative;
+    z-index: 1; /* Ensure it's above the background layers */
+}
+
+nav a {
+    color: var(--cream);
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav a:hover {
+    background-color: var(--cream);
+    color: var(--dark);
+}
+
+/* Main Content Area */
+main {
+    max-width: 800px;
+    margin: auto;
+    background-color: var(--dark);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--cream);
+    position: relative;
+    z-index: 1; /* Ensure it's above the background layers */
+}
+
+/* Forms */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+form label {
+    font-weight: bold;
+    color: var(--cream);
+}
+
+form input[type="text"],
+form input[type="password"] {
+    padding: 10px;
+    border: 1px solid var(--cream);
+    border-radius: 4px;
+    outline: none;
+    background-color: rgba(7, 7, 7, 0.8); /* Semi-transparent dark background for inputs */
+    color: var(--cream);
+    transition: border-color 0.3s ease;
+}
+
+form input[type="text"]:focus,
+form input[type="password"]:focus {
+    border-color: var(--cream);
+}
+
+form button {
+    padding: 10px;
+    background-color: var(--button-color);
+    color: var(--cream);
+    border: 1px solid var(--cream);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+form button:hover {
+    background-color: var(--cream);
+    color: var(--dark);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Error Messages */
+.error-message {
+    color: var(--error-color);
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+/* Song List */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    background-color: var(--dark);
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--cream);
+    color: var(--cream);
+}
+
+ul li:hover {
+    background-color: var(--cream);
+    color: var(--dark);
+}
+
+ul li a {
+    color: var(--cream);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+ul li a:hover {
+    color: var(--button-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav {
+        text-align: center;
+    }
+
+    nav a {
+        display: block;
+        margin: 10px 0;
+    }
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Your Music App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('friends') }}">Friends</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </nav>
+
+    <main>
+        <h1>Welcome, {{ session['username'] }}!</h1>
+
+        <section class="song-form">
+            <h2>Add a New Song</h2>
+            <form action="{{ url_for('add_song') }}" method="POST">
+                <label for="song_name">Song Name:</label>
+                <input type="text" id="song_name" name="song_name" required>
+
+                <label for="artist">Artist:</label>
+                <input type="text" id="artist" name="artist" required>
+
+                <label for="youtube_url">YouTube URL (optional):</label>
+                <input type="text" id="youtube_url" name="youtube_url">
+
+                <button type="submit">Add Song</button>
+            </form>
+        </section>
+
+        <section class="song-list">
+            <h2>Your Songs</h2>
+            <ul>
+                {% for song in songs %}
+                <li>
+                    <strong>{{ song.name }}</strong> by {{ song.artist }}
+                    {% if song.youtube_url %}
+                    <a href="{{ song.youtube_url }}" target="_blank">Listen on YouTube</a>
+                    {% endif %}
+                    <a href="{{ url_for('edit_song', song_id=song.id) }}" class="edit-button">Edit</a>
+                </li>
+                {% else %}
+                <li>No songs added yet.</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <section class="add-friend">
+            <h2>Add a Friend</h2>
+            <form action="{{ url_for('add_friend') }}" method="POST">
+                <label for="friend_username">Friend's Username:</label>
+                <input type="text" id="friend_username" name="friend_username" required>
+                <button type="submit">Add Friend</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>
